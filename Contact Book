@@ -1,0 +1,65 @@
+contacts = []
+
+def add_contact():
+    name = raw_input("Enter name: ")
+    number = raw_input("Enter Mobile Number: ")
+    mail_id = raw_input("Enter Mobile mail id: ")
+
+    contacts.append({"name": name, "phone_number": number, "email": mail_id})
+    print("Contact added successfully!")
+
+def view_contacts():
+    print(contacts)
+
+def search_contact():
+    name = raw_input("Enter name to search: ")
+    for contact in contacts:
+        if contact["name"] == name:
+            print(contact)
+            return
+    print("Contact not found")
+
+def update_contact():
+    name = raw_input("Enter contact to update: ")
+    for contact in contacts:
+        if contact["name"] == name:
+            number = raw_input("Enter the updated number: ")
+            mail_id = raw_input("Enter the new main id: ")
+            contact["phone_number"] = number
+            contact["email"] = mail_id
+            print("Contact updated successfully!")
+            return
+    print("Contact not found!")
+
+def delete_contact():
+    name = raw_input("Enter name to delete: ")
+    for contact in contacts:
+        if contact["name"] == name:
+            contacts.remove(contact)
+            print("Contact deleted successfully!")
+            return
+    print("Contact not found!")
+
+while True:
+    print("\n contact book menu")
+    print("1. add a new contact")
+    print("2. view all contacts")
+    print("3. search for a contact")
+    print("4. update a contact")
+    print("5. delete a contact")
+    choice = int(raw_input("Enter your choice: "))
+
+    if choice == 1:
+        add_contact()
+    elif choice == 2:
+        view_contacts()
+    elif choice == 3:
+        search_contact()
+    elif choice == 4:
+        update_contact()
+    elif choice == 5:
+        delete_contact()
+    elif choice == 6:
+        break
+    else:
+        print("Invalid choice: ")
