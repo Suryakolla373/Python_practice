@@ -1,0 +1,58 @@
+expenses = []
+
+
+def add_expense():
+    amount = raw_input("Enter the amount: ")
+    category = raw_input("Enter the category: ")
+    description = raw_input("Enter the description: ")
+
+    expense = {"amount": amount, "category": category, "description": description}
+    expenses.append(expense)
+    print("Expenses added Successfully!")
+
+
+def view_expenses():
+    print(expenses)
+
+
+def view_expense_by_category():
+    category = raw_input("Type the category: ")
+    for expense in expenses:
+        if expense['category'] == category:
+            print(expense)
+
+
+def delete_expense():
+    for i, expense in enumerate(expenses, start=1):
+        print("{}{}. {}".format(i, ".", expense))
+
+    index = int(raw_input("Enter index to delete: "))
+    del expenses[index - 1]
+    print("Expense deleted successfully!")
+
+
+while True:
+    print("""
+    1. Add Expense
+    2. View All Expenses
+    3. View Expenses by Category
+    4. Delete Expense
+    5. Exit""")
+    try:
+        choice = int(raw_input("Enter your choice: "))
+    except (SyntaxError, ValueError):
+        print("Invalid input. Please enter a number.")
+        continue
+
+    if choice == 1:
+        add_expense()
+    elif choice == 2:
+        view_expenses()
+    elif choice == 3:
+        view_expense_by_category()
+    elif choice == 4:
+        delete_expense()
+    elif choice == 5:
+        break
+    else:
+        print("Invalid choice")
